@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="study.mybatis">
+  <update id="createTableUser" parameterType="String">
+    CREATE TABLE IF NOT EXISTS USER (
+    user_id int(10) unsigned NOT NULL,
+    user_name varchar unsigned NOT NULL
+    )
+  </update>
+
+  <update id="createTableItem" parameterType="String">
+    CREATE TABLE IF NOT EXISTS ITEM (
+    item_id int(10) unsigned NOT NULL,
+    item_name varchar unsigned NOT NULL
+    )
+  </update>
+
+  <select id="selectUser" resultType="map">
+    select * from USER
+  </select>
+
+  <select id="selectUser2" resultType="study.mybatis.UserDTO">
+    select * from USER
+  </select>
+
+
+  <insert id="insertUser" parameterType="study.mybatis.UserDTO">
+    insert into USER(user_id, user_name) values (
+    	1,'test'
+    )
+  </insert>
+</mapper>
