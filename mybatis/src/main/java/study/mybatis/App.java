@@ -34,7 +34,6 @@ public class App
             // ★設定ファイルを元に、 SqlSessionFactory を作成する
             SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(in);
 
-
             // ★SqlSessionFactory から SqlSession を生成する
             try (SqlSession session = factory.openSession()) {
 
@@ -44,7 +43,10 @@ public class App
             	System.out.println("table作成完了");
 
             	// データを登録する。
-            	session.insert("study.mybatis.insertUser", new UserDTO(1, "あいうえお"));
+            	UserDTO user = new UserDTO();
+            	user.setUserId(2);
+            	user.setUserName("data2");
+            	session.insert("study.mybatis.insertUser", user);
 
                 // ★SqlSession を使って SQL を実行する
                 List<Map<String, Object>> result = session.selectList("study.mybatis.selectUser");
@@ -58,7 +60,7 @@ public class App
 
 
                 // ★SqlSession を使って SQL を実行する
-                List<UserDTO> userList = session.selectList("study.mybatis.selectUser");
+                List<UserDTO> userList = session.selectList("study.mybatis.selectUser2");
                 System.out.println(userList);
 
             }
